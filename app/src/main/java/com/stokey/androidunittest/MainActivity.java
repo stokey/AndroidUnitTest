@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.stokey.androidunittest.model.User;
 import com.stokey.androidunittest.service.LoginManagerImp;
 import com.stokey.androidunittest.util.LoginUtil;
 
@@ -43,9 +44,8 @@ public class MainActivity extends AppCompatActivity {
                         LoginManagerImp.getInstance()
                                 .login(mNameEdt.getText().toString(), mPswEdt.getText().toString())
                                 .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(user ->
-                                                Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_LONG).show(),
-                                        throwable -> Toast.makeText(MainActivity.this, "Login Failed:" + throwable.getMessage(), Toast.LENGTH_LONG).show());
+                                .subscribe(user -> Toast.makeText(this, "Login Success", Toast.LENGTH_LONG).show(),
+                                        throwable -> Toast.makeText(this, "Login Failed:" + throwable.getMessage(), Toast.LENGTH_LONG).show());
                     } else {
                         Toast.makeText(MainActivity.this, "Password is illegal", Toast.LENGTH_LONG).show();
                     }
